@@ -47,7 +47,7 @@ export function init(scene, size, id, offset, texture) {
     plane.position.set(offset.x, -0.01, offset.z);
     scene.add(plane);
 
-   /* // ビル
+    // ビル
     function makeBuilding(x, z, type){
         const height = [2, 2, 7, 4, 5];
         const bldgH = height[type]*5;
@@ -57,14 +57,25 @@ export function init(scene, size, id, offset, texture) {
         const sideUvE = (type*2+2)/11;
         const topUvS = (type*2+2)/11;
         const topUvE = (type*2+3)/11;
+        const uvs = geometry.getAttribute("uv");
+        for(let i = 0; i < 48; i+=4){
+            if(i < 16 || i > 22){
+                uvs.array[i] = sideUvS;
+                uvs.array[i+2] = sideUvE;
+            }
+            else{
+                uvs.array[i] = topUvS;
+                uvs.array[i+2] = topUvE;
+            }
+        }
         const bldg = new THREE.Mesh(
             geometry,
             material
         ) 
-        bldg.position.set(7,0,5);
+        bldg.position.set(60,5,40);
         scene.add(bldg);
     }
-    makeBuilding(20,20, 0);*/
+    makeBuilding(20,20, 0);
     
 
     // コース(描画)
