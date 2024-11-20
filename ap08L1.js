@@ -68,17 +68,13 @@ export function init(scene, size, id, offset, texture) {
                 uvs.array[i+2]=topUvE;
             }
         }
-        const bldg1 = new THREE.Mesh(geometry,material)
-        const bldg2 = new THREE.Mesh(geometry,material)
-        const bldg3 = new THREE.Mesh(geometry,material)
-        bldg1.position.set(40, bldgh/2, -48);
-        bldg2.position.set(85, bldgh/2, -30);
-        bldg3.position.set(50, bldgh/2, -10);
-        scene.add(bldg1);
-        scene.add(bldg2);
-        scene.add(bldg3);
+        const bldg = new THREE.Mesh(geometry,material)
+        bldg.position.set(x, bldgh/2, z);
+        scene.add(bldg);
     }
-    makeBuilding(20,20,0);
+    makeBuilding(80,-50,1);
+    makeBuilding(50,-50,3);
+    makeBuilding(40,-45,2);
     // コース(描画)
     //制御点を補間して曲線を作る
     course = new THREE.CatmullRomCurve3(
