@@ -72,10 +72,11 @@ export function init(scene, size, id, offset, texture) {
             geometry,
             material
         ) 
-        bldg.position.set(60,5,40);
+        bldg.position.set(x+10,bldgH,30);
         scene.add(bldg);
     }
     makeBuilding(20,20, 0);
+    makeBuilding(40,50, 0);
     
 
     // コース(描画)
@@ -130,6 +131,11 @@ export function makeCourse(scene) {
 
 // カメラを返す
 export function getCamera() {
+    /*camera.lerpVectors(carTarget, carPosition, 4);
+    camera.y +=2.5;
+    cameraP.copy(camera);
+    camera.lookAt(carPosition);
+    camera.up.set(0,1,0);*/
     return camera;
 }
 
