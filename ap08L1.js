@@ -73,8 +73,8 @@ export function init(scene, size, id, offset, texture) {
         scene.add(bldg);
     }
     makeBuilding(80,-50,1);
-    makeBuilding(50,-20,3);
-    makeBuilding(30,-40,2);
+    makeBuilding(50,-50,3);
+    makeBuilding(40,-45,2);
     // コース(描画)
     //制御点を補間して曲線を作る
     course = new THREE.CatmullRomCurve3(
