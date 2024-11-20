@@ -96,7 +96,7 @@ export function makeCourse(scene) {
         });
     })
     course = new THREE.CatmullRomCurve3(
-        courseVectors, ture
+        courseVectors, true
     )
 }
 
