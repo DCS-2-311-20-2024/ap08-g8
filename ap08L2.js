@@ -48,19 +48,41 @@ export function init(scene, size, id, offset, texture) {
     scene.add(plane);
 
     // ビル
-    /*function makeBuilding(x, z, type){
-        const heigth = [2, 2, 7, 4, 5];
-        const bldgh = heigth(type * 5);
-        const geometry = new THREE.BoxGeometry(8, bldgh, 8);
-        const material = new THREE.MeshLambertMaterial({color: 0x808080});
+    function makeBuilding(x, z, type){
+        const height = [2, 2, 7, 4, 5];
+        const bldgH = height[type] * 5;
+        const geometry = new THREE.BoxGeometry(8, bldgH, 8);
+        const material = new THREE.MeshLambertMaterial({map: texture});
+        const sideUvS = (type*2+1)/11;
+        const sideUvE = (type*2+2)/11;
+        const topUvS = (type*2+2)/11;
+        const topUvE = (type*2+3)/11;
+        const uvs = geometry.getAttribute("uv");
+        for(let i = 0;i<48;i += 4){
+            if(i < 16 || i > 22){
+                uvs.array[i] = sideUvS;
+                uvs.array[i+2] = sideUvE;
+            }else{
+                uvs.array[i] = topUvS;
+                uvs.array[i+2] = topUvE;
+            }
+        }
         const bldg = new THREE.Mesh(
             geometry,
             material
         )
-        bldg.position.set(45, -23, 5);
+        bldg.position.set(x,10,z);
         scene.add(bldg);
     }
-    makeBuilding(20, 20, 0);*/
+    makeBuilding(20, 20, 0);
+    makeBuilding(-10, 10, 2);
+    makeBuilding(-4, 40, 1);
+    makeBuilding(9, 5, 0);
+    makeBuilding(34, 28, 2);
+    
+    const e = new THREE.Mesh(new THREE.BoxGeometry(5,5,5), new THREE.MeshLambertMaterial({color: 0x13123}));
+    e.position.set(10,30,30);
+    scene.add(e);
     // コース(描画)
     //制御てんを保管して曲線を作る
     course = new THREE.CatmullRomCurve3(
