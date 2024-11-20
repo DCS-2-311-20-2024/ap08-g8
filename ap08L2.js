@@ -71,13 +71,18 @@ export function init(scene, size, id, offset, texture) {
             geometry,
             material
         )
-        bldg.position.set(x,5,z);
+        bldg.position.set(x,10,z);
         scene.add(bldg);
     }
     makeBuilding(20, 20, 0);
     makeBuilding(-10, 10, 2);
-    makeBuilding(1, 1, 1);
+    makeBuilding(-4, 40, 1);
+    makeBuilding(9, 5, 0);
+    makeBuilding(34, 28, 2);
     
+    const e = new THREE.Mesh(new THREE.BoxGeometry(5,5,5), new THREE.MeshLambertMaterial({color: 0x13123}));
+    e.position.set(10,30,30);
+    scene.add(e);
     // コース(描画)
     //制御てんを保管して曲線を作る
     course = new THREE.CatmullRomCurve3(
