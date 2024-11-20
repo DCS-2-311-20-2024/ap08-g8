@@ -19,6 +19,9 @@ let course;
 export const origin = new THREE.Vector3();
 export const controlPoints = [
     [-25,-40],
+    [15,0],
+    [-15,10],
+    [8,30],
     [ 50, 20]
 ]
 export function init(scene, size, id, offset, texture) {
@@ -48,7 +51,33 @@ export function init(scene, size, id, offset, texture) {
     // ビル
 
     // コース(描画)
-
+    // 制御点を補間して曲線を作る
+    course = new THREE.CatmullRomCurve3(
+        controlPoints.map((p) => {
+            return (new THREE.Vector3()).set(
+                offset.x + p[0],
+                0,
+                offset.z + p[1]
+            );
+        }),false
+    )
+    // 曲線から100箇所を取り出し,円を並べる。
+    const points = course.getPoints(100);
+    points.forEach((point) =>{
+        const road = new THREE.Mesh(
+            new THREE.CircleGeometry(5,16),
+            new THREE.MeshLambertMaterial ({
+                color: "gray",
+            })
+        )
+        road.rotateX(-Math.PI/2);
+        road.position.set(
+            point.x,
+            0,
+            point.z
+        );
+        scene.add(road)
+    });
 }
 
 // コース(自動運転用)
