@@ -1,7 +1,7 @@
 //
 // 応用プログラミング 第8回 (ap08L2.js)
 //
-// G18400-2021 拓殖太郎
+// G384832023 古川心
 //
 
 "use strict"; // 厳格モード
@@ -48,7 +48,15 @@ export function init(scene, size, id, offset, texture) {
     // ビル
 
     // コース(描画)
-
+    course = new THREE.CatmullRomCurve3(
+        controlPoints.map((p) => {
+            return (new THREE.Vector3()).set(
+                offset.x + p[0],
+                0,
+                offset.z + p[1]
+            );
+        }), false
+    )
 }
 
 // コース(自動運転用)
@@ -62,6 +70,10 @@ export function getCamera() {
 
 // 車の設定
 export function setCar(scene, car) {
+    const SCALE = 0.01;
+    car.position.copy(origin);
+    car.scale.set(SCALE, SCALE, SCALE);
+    scene.add(car);
 }
 
 // Windowサイズの変更処理
