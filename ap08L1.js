@@ -89,7 +89,7 @@ export function makeCourse(scene) {
                 new THREE.Vector3(
                     p[0] + part.origin.x,
                     0,
-                    p[1] + partorigin.z,
+                    p[1] + part.origin.z,
                 )
             )
         });
